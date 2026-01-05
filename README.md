@@ -101,8 +101,6 @@
 *Create account page with elegant form design*
 
 </div>
-=======
->>>>>>> 2c7947b243ad7ee1d91b86f17294ac8d0459eb24
 
 ---
 
@@ -156,6 +154,54 @@ dependencies:
   google_fonts: ^6.2.1
   http: ^1.2.2
 ```
+
+---
+
+## 🔌 API Integration
+
+### Current Implementation
+
+The app currently uses **mock data** to demonstrate functionality. The hotel listings are pre-loaded from `MockDataService` with 6 hotels from Tangier, Morocco.
+
+### OpenTripMap API
+
+The app includes integration with the [OpenTripMap API](https://opentripmap.io/) for fetching real accommodation data:
+
+**Service File:** `lib/services/opentripmap_service.dart`
+
+**Features:**
+- Fetch accommodations by location (latitude, longitude, radius)
+- Get detailed place information including images, ratings, and descriptions
+- Configurable search parameters (kinds, radius, limit)
+
+**To Enable Real API:**
+
+1. Get your free API key from [OpenTripMap](https://opentripmap.io/product)
+
+2. Update the API key in `lib/services/opentripmap_service.dart`:
+   ```dart
+   static const String _apiKey = 'YOUR_API_KEY_HERE';
+   ```
+
+3. Switch from mock data to API in `lib/main.dart`:
+   ```dart
+   // Replace this:
+   _places = MockDataService.getMockAccommodations();
+   _placeDetails = MockDataService.getMockPlaceDetails();
+   
+   // With this:
+   _places = await OpenTripMapService.fetchAccommodations(
+     lat: 35.7595, // Tangier coordinates
+     lon: -5.8340,
+     radius: 5000,
+   );
+   ```
+
+**API Endpoints Used:**
+- `GET /0.1/en/places/radius` - Search places by radius
+- `GET /0.1/en/places/xid/{xid}` - Get place details
+
+**Note:** The OpenTripMap free tier has rate limits. For production use, consider upgrading to a paid plan or implementing caching.
 
 ---
 
