@@ -76,7 +76,7 @@
     </td>
     <td align="center">
       <img src="screenshots/05_search_screen.png" width="180" /><br/>
-      <strong>Search Results</strong><br/>
+      <strong>Register page</strong><br/>
       <em>Create account page with elegant form design</em>
     </td>
   </tr>
