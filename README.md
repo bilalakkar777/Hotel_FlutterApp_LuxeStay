@@ -77,7 +77,7 @@
 
 ### Search Results
 ![Search Results](screenshots/05_search_screen.png)
-*Advanced search with filters and hotel listings*
+*Advanced search with filters and listings*
 
 </div>
 
