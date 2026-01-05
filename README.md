@@ -57,34 +57,31 @@
 
 ## 📱 Screenshots
 
-<div align="center">
+<table align="center">
+  <tr>
+    <td align="center">
+      <img src="screenshots/01_home_screen.png" width="180" /><br/>
+      <strong>Home Screen</strong><br/>
+      <em>Premium hotel listings with search functionality</em>
+    </td>
+    <td align="center">
+      <img src="screenshots/02_hotel_details.png" width="180" /><br/>
+      <strong>Hotel Details</strong><br/>
+      <em>Immersive details with amenities & booking options</em>
+    </td>
+    <td align="center">
+      <img src="screenshots/04_login_screen.png" width="180" /><br/>
+      <strong>Login Screen</strong><br/>
+      <em>Elegant login page with social sign-in options</em>
+    </td>
+    <td align="center">
+      <img src="screenshots/05_search_screen.png" width="180" /><br/>
+      <strong>Search Results</strong><br/>
+      <em>Advanced search with filters and listings</em>
+    </td>
+  </tr>
+</table>
 
-### Home Screen
-### Home Screen
-<img src="screenshots/01_home_screen.png" width="260" />
-<br/>
-<em>Premium hotel listings with search functionality and handpicked recommendations</em>
-
----
-
-### Hotel Details
-<img src="screenshots/02_hotel_details.png" width="260" />
-<br/>
-<em>Immersive hotel details with amenities, description, and booking options</em>
-
----
-
-### Login Screen
-<img src="screenshots/04_login_screen.png" width="260" />
-<br/>
-<em>Elegant login page with social sign-in options</em>
-
----
-
-### Search Results
-<img src="screenshots/05_search_screen.png" width="260" />
-<br/>
-<em>Advanced search with filters and hotel listings</em>
 
 
 ---
