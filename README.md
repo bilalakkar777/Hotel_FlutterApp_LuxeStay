@@ -96,9 +96,9 @@
 ![Login Screen](screenshots/04_login_screen.png)
 *Elegant login page with social sign-in options*
 
-### Search Results
-![Search Results](screenshots/05_search_screen.png)
-*Advanced search with filters and listings*
+### Register Screen
+![Register Screen](screenshots/05_search_screen.png)
+*Create account page with elegant form design*
 
 </div>
 =======
