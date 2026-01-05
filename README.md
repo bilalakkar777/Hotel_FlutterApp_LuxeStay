@@ -57,7 +57,29 @@
 
 ## 📱 Screenshots
 
-> *Screenshots coming soon*
+<div align="center">
+
+### Home Screen
+![Home Screen](screenshots/01_home_screen.png)
+*Premium hotel listings with search functionality and handpicked recommendations*
+
+### Hotel Details
+![Hotel Details](screenshots/02_hotel_details.png)
+*Immersive hotel details with amenities, description, and booking options*
+
+### Profile Screen
+![Profile Screen](screenshots/03_profile_screen.png)
+*Member benefits and authentication access*
+
+### Login Screen
+![Login Screen](screenshots/04_login_screen.png)
+*Elegant login page with social sign-in options*
+
+### Search Results
+![Search Results](screenshots/05_search_screen.png)
+*Advanced search with filters and hotel listings*
+
+</div>
 
 ---
 
