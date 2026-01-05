@@ -77,34 +77,11 @@
     <td align="center">
       <img src="screenshots/05_search_screen.png" width="180" /><br/>
       <strong>Search Results</strong><br/>
-      <em>Advanced search with filters and listings</em>
+      <em>Create account page with elegant form design</em>
     </td>
   </tr>
 </table>
 
-
-<<<<<<< HEAD
-### Hotel Details
-![Hotel Details](screenshots/02_hotel_details.png)
-*Immersive hotel details with amenities, description, and booking options*
-
-### Profile Screen
-![Profile Screen](screenshots/03_profile_screen.png)
-*Member benefits and authentication access*
-
-### Login Screen
-![Login Screen](screenshots/04_login_screen.png)
-*Elegant login page with social sign-in options*
-
-### Register Screen
-![Register Screen](screenshots/05_search_screen.png)
-*Create account page with elegant form design*
-
-</div>
-=======
->>>>>>> 2c7947b243ad7ee1d91b86f17294ac8d0459eb24
-
----
 
 ## 🚀 Getting Started
 
