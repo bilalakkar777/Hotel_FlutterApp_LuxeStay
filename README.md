@@ -74,13 +74,6 @@
 
 ---
 
-### Profile Screen
-<img src="screenshots/03_profile_screen.png" width="260" />
-<br/>
-<em>Member benefits and authentication access</em>
-
----
-
 ### Login Screen
 <img src="screenshots/04_login_screen.png" width="260" />
 <br/>
