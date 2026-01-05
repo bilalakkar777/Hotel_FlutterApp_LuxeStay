@@ -60,26 +60,39 @@
 <div align="center">
 
 ### Home Screen
-![Home Screen](screenshots/01_home_screen.png)
-*Premium hotel listings with search functionality and handpicked recommendations*
+### Home Screen
+<img src="screenshots/01_home_screen.png" width="260" />
+<br/>
+<em>Premium hotel listings with search functionality and handpicked recommendations</em>
+
+---
 
 ### Hotel Details
-![Hotel Details](screenshots/02_hotel_details.png)
-*Immersive hotel details with amenities, description, and booking options*
+<img src="screenshots/02_hotel_details.png" width="260" />
+<br/>
+<em>Immersive hotel details with amenities, description, and booking options</em>
+
+---
 
 ### Profile Screen
-![Profile Screen](screenshots/03_profile_screen.png)
-*Member benefits and authentication access*
+<img src="screenshots/03_profile_screen.png" width="260" />
+<br/>
+<em>Member benefits and authentication access</em>
+
+---
 
 ### Login Screen
-![Login Screen](screenshots/04_login_screen.png)
-*Elegant login page with social sign-in options*
+<img src="screenshots/04_login_screen.png" width="260" />
+<br/>
+<em>Elegant login page with social sign-in options</em>
+
+---
 
 ### Search Results
-![Search Results](screenshots/05_search_screen.png)
-*Advanced search with filters and hotel listings*
+<img src="screenshots/05_search_screen.png" width="260" />
+<br/>
+<em>Advanced search with filters and hotel listings</em>
 
-</div>
 
 ---
 
