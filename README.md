@@ -57,12 +57,33 @@
 
 ## 📱 Screenshots
 
-<div align="center">
+<table align="center">
+  <tr>
+    <td align="center">
+      <img src="screenshots/01_home_screen.png" width="180" /><br/>
+      <strong>Home Screen</strong><br/>
+      <em>Premium hotel listings with search functionality</em>
+    </td>
+    <td align="center">
+      <img src="screenshots/02_hotel_details.png" width="180" /><br/>
+      <strong>Hotel Details</strong><br/>
+      <em>Immersive details with amenities & booking options</em>
+    </td>
+    <td align="center">
+      <img src="screenshots/04_login_screen.png" width="180" /><br/>
+      <strong>Login Screen</strong><br/>
+      <em>Elegant login page with social sign-in options</em>
+    </td>
+    <td align="center">
+      <img src="screenshots/05_search_screen.png" width="180" /><br/>
+      <strong>Search Results</strong><br/>
+      <em>Advanced search with filters and listings</em>
+    </td>
+  </tr>
+</table>
 
-### Home Screen
-![Home Screen](screenshots/01_home_screen.png)
-*Premium hotel listings with search functionality and handpicked recommendations*
 
+<<<<<<< HEAD
 ### Hotel Details
 ![Hotel Details](screenshots/02_hotel_details.png)
 *Immersive hotel details with amenities, description, and booking options*
@@ -80,6 +101,8 @@
 *Advanced search with filters and listings*
 
 </div>
+=======
+>>>>>>> 2c7947b243ad7ee1d91b86f17294ac8d0459eb24
 
 ---
 
