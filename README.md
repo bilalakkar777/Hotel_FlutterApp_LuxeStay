@@ -76,13 +76,14 @@
     </td>
     <td align="center">
       <img src="screenshots/05_search_screen.png" width="180" /><br/>
-      <strong>Search Results</strong><br/>
-      <em>Advanced search with filters and listings</em>
+      <strong>Register page</strong><br/>
+      <em>Create account page with elegant form design</em>
     </td>
   </tr>
 </table>
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 ### Hotel Details
 ![Hotel Details](screenshots/02_hotel_details.png)
@@ -104,6 +105,8 @@
 
 ---
 
+=======
+>>>>>>> 8178af0f97f86667e85477b1238e627809a6491a
 ## 🚀 Getting Started
 
 ### Prerequisites
