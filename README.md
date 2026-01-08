@@ -82,31 +82,6 @@
   </tr>
 </table>
 
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-### Hotel Details
-![Hotel Details](screenshots/02_hotel_details.png)
-*Immersive hotel details with amenities, description, and booking options*
-
-### Profile Screen
-![Profile Screen](screenshots/03_profile_screen.png)
-*Member benefits and authentication access*
-
-### Login Screen
-![Login Screen](screenshots/04_login_screen.png)
-*Elegant login page with social sign-in options*
-
-### Register Screen
-![Register Screen](screenshots/05_search_screen.png)
-*Create account page with elegant form design*
-
-</div>
-
----
-
-=======
->>>>>>> 8178af0f97f86667e85477b1238e627809a6491a
 ## 🚀 Getting Started
 
 ### Prerequisites
