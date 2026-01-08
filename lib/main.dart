@@ -362,15 +362,50 @@ class _HomeScreenState extends State<HomeScreen> {
   // Dialog for location selection
   void _showLocationDialog() {
     final TextEditingController controller = TextEditingController(text: _location);
+    final List<String> allLocations = [
+      'Santorini, Greece',
+      'Paris, France',
+      'Dubai, UAE',
+      'Bali, Indonesia',
+      'Rome, Italy',
+      'New York, USA',
+      'Tangier, Morocco',
+    ];
+    
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         title: Text('Where to?', style: GoogleFonts.playfairDisplay(fontWeight: FontWeight.bold)),
-        content: TextField(
-          controller: controller,
-          decoration: const InputDecoration(
-            hintText: 'Enter destination',
-            prefixIcon: Icon(Icons.location_on_outlined, color: Color(0xFFD4AF37)),
+        content: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TextField(
+                controller: controller,
+                autofocus: true,
+                decoration: const InputDecoration(
+                  hintText: 'Enter destination',
+                  prefixIcon: Icon(Icons.location_on_outlined, color: Color(0xFFD4AF37)),
+                ),
+              ),
+              const SizedBox(height: 20),
+              const Text('Popular destinations:', style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.grey)),
+              const SizedBox(height: 12),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: allLocations.map((location) => ActionChip(
+                  label: Text(location, style: const TextStyle(fontSize: 12)),
+                  avatar: const Icon(Icons.location_city, size: 16, color: Color(0xFFD4AF37)),
+                  onPressed: () async {
+                    Navigator.pop(context);
+                    await _searchHotelsByLocation(location);
+                  },
+                  backgroundColor: Colors.grey[100],
+                )).toList(),
+              ),
+            ],
           ),
         ),
         actions: [
@@ -383,7 +418,6 @@ class _HomeScreenState extends State<HomeScreen> {
               final newLocation = controller.text.trim();
               if (newLocation.isNotEmpty) {
                 Navigator.pop(context);
-                // Search hotels for the new location
                 await _searchHotelsByLocation(newLocation);
               }
             },
