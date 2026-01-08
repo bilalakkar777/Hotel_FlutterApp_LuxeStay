@@ -2,7 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HotelDetailsScreen extends StatefulWidget {
-  const HotelDetailsScreen({super.key});
+  final String hotelName;
+  final String hotelAddress;
+  final String hotelImage;
+  final String hotelRating;
+  
+  const HotelDetailsScreen({
+    super.key,
+    required this.hotelName,
+    required this.hotelAddress,
+    required this.hotelImage,
+    required this.hotelRating,
+  });
 
   @override
   State<HotelDetailsScreen> createState() => _HotelDetailsScreenState();
@@ -16,10 +27,6 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen> {
 
   bool _isDescriptionExpanded = false;
 
-  // Placeholder data
-  final String _hotelImage = 'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80';
-  final String _description = "Experience unparalleled luxury at The Ritz-Carlton, Kyoto. Situated on the banks of the Kamogawa River, this urban resort offers a tranquil sanctuary blending ancient Japanese traditions with modern European luxury. Enjoy exquisite dining, a world-class spa, and breathtaking views of the Higashiyama mountains. Each room is meticulously designed to provide the utmost comfort and style for discerning travelers.";
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,10 +38,17 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen> {
             Stack(
               children: [
                 Image.network(
-                  _hotelImage,
+                  widget.hotelImage,
                   height: 350,
                   width: double.infinity,
                   fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Container(
+                      height: 350,
+                      color: Colors.grey[300],
+                      child: const Icon(Icons.hotel, size: 100, color: Colors.grey),
+                    );
+                  },
                 ),
                 // Gradient overlay for header icons visibility
                 Container(
@@ -88,7 +102,7 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen> {
                     children: [
                       // Title and Rating
                       Text(
-                        'The Ritz-Carlton, Kyoto',
+                        widget.hotelName,
                         style: GoogleFonts.playfairDisplay(
                           fontSize: 26,
                           fontWeight: FontWeight.bold,
@@ -102,9 +116,9 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen> {
                             children: List.generate(5, (index) => Icon(Icons.star, color: _goldAccent, size: 18)),
                           ),
                           const SizedBox(width: 8),
-                          Text('4.9', style: TextStyle(fontWeight: FontWeight.bold, color: _navyBlue)),
+                          Text(widget.hotelRating, style: TextStyle(fontWeight: FontWeight.bold, color: _navyBlue)),
                           const SizedBox(width: 4),
-                          Text('(320 reviews)', style: TextStyle(color: _lightGreyTxt)),
+                          Text('(${(double.parse(widget.hotelRating) * 100).toInt()} reviews)', style: TextStyle(color: _lightGreyTxt)),
                         ],
                       ),
 
@@ -115,7 +129,9 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen> {
                         children: [
                           Icon(Icons.location_on_outlined, color: _goldAccent, size: 20),
                           const SizedBox(width: 8),
-                          Text('Kamogawa River, Kyoto, Japan', style: TextStyle(color: _lightGreyTxt, fontSize: 15)),
+                          Expanded(
+                            child: Text(widget.hotelAddress, style: TextStyle(color: _lightGreyTxt, fontSize: 15)),
+                          ),
                         ],
                       ),
 
@@ -146,7 +162,7 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen> {
                       Text('About the Hotel', style: _sectionTitleStyle()),
                       const SizedBox(height: 12),
                       Text(
-                        _description,
+                        "Experience unparalleled luxury at ${widget.hotelName}. This exceptional property offers world-class amenities, exquisite dining, and impeccable service. Each room is meticulously designed to provide the utmost comfort and style for discerning travelers. Enjoy breathtaking views, a world-class spa, and an unforgettable stay in one of the finest hotels.",
                         maxLines: _isDescriptionExpanded ? null : 3,
                         overflow: _isDescriptionExpanded ? TextOverflow.visible : TextOverflow.ellipsis,
                         style: GoogleFonts.dmSans(
@@ -231,7 +247,7 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '\$850',
+                    '\$${(double.parse(widget.hotelRating) * 180).toInt()}',
                     style: GoogleFonts.playfairDisplay(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,

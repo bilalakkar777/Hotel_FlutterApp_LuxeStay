@@ -49,6 +49,12 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Place> _places = [];
   Map<String, PlaceDetails> _placeDetails = {};
   bool _isLoading = true;
+  
+  // Search card state variables
+  String _location = "Santorini, Greece";
+  String _checkInDate = "Oct 12";
+  String _checkOutDate = "16";
+  int _adults = 2;
 
   @override
   void initState() {
@@ -179,18 +185,22 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 child: Column(
                   children: [
-                    Row(
-                      children: [
-                        const Icon(Icons.location_on_outlined, color: Color(0xFFD4AF37)),
-                        const SizedBox(width: 12),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text('Where to?', style: TextStyle(color: Colors.grey, fontSize: 12)),
-                            Text('Santorini, Greece', style: GoogleFonts.dmSans(fontWeight: FontWeight.bold, fontSize: 16)),
-                          ],
-                        ),
-                      ],
+                    // Location Field
+                    GestureDetector(
+                      onTap: () => _showLocationDialog(),
+                      child: Row(
+                        children: [
+                          const Icon(Icons.location_on_outlined, color: Color(0xFFD4AF37)),
+                          const SizedBox(width: 12),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text('Where to?', style: TextStyle(color: Colors.grey, fontSize: 12)),
+                              Text(_location, style: GoogleFonts.dmSans(fontWeight: FontWeight.bold, fontSize: 16)),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                     const Padding(
                       padding: EdgeInsets.symmetric(vertical: 16.0),
@@ -198,36 +208,44 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     Row(
                       children: [
+                        // Dates Field
                         Expanded(
-                          child: Row(
-                            children: [
-                              const Icon(Icons.calendar_today_outlined, color: Color(0xFFD4AF37), size: 20),
-                              const SizedBox(width: 12),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Text('Dates', style: TextStyle(color: Colors.grey, fontSize: 12)),
-                                  Text('Oct 12 - 16', style: GoogleFonts.dmSans(fontWeight: FontWeight.bold, fontSize: 14)),
-                                ],
-                              ),
-                            ],
+                          child: GestureDetector(
+                            onTap: () => _showDatePicker(),
+                            child: Row(
+                              children: [
+                                const Icon(Icons.calendar_today_outlined, color: Color(0xFFD4AF37), size: 20),
+                                const SizedBox(width: 12),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text('Dates', style: TextStyle(color: Colors.grey, fontSize: 12)),
+                                    Text('$_checkInDate - $_checkOutDate', style: GoogleFonts.dmSans(fontWeight: FontWeight.bold, fontSize: 14)),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                         Container(width: 1, height: 30, color: Colors.grey[300]),
                         const SizedBox(width: 16),
+                        // Guests Field
                         Expanded(
-                          child: Row(
-                            children: [
-                              const Icon(Icons.person_outline, color: Color(0xFFD4AF37), size: 20),
-                              const SizedBox(width: 12),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Text('Guests', style: TextStyle(color: Colors.grey, fontSize: 12)),
-                                  Text('2 Adults', style: GoogleFonts.dmSans(fontWeight: FontWeight.bold, fontSize: 14)),
-                                ],
-                              ),
-                            ],
+                          child: GestureDetector(
+                            onTap: () => _showGuestsDialog(),
+                            child: Row(
+                              children: [
+                                const Icon(Icons.person_outline, color: Color(0xFFD4AF37), size: 20),
+                                const SizedBox(width: 12),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text('Guests', style: TextStyle(color: Colors.grey, fontSize: 12)),
+                                    Text('$_adults ${_adults > 1 ? "Adults" : "Adult"}', style: GoogleFonts.dmSans(fontWeight: FontWeight.bold, fontSize: 14)),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ],
@@ -341,6 +359,155 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  // Dialog for location selection
+  void _showLocationDialog() {
+    final TextEditingController controller = TextEditingController(text: _location);
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('Where to?', style: GoogleFonts.playfairDisplay(fontWeight: FontWeight.bold)),
+        content: TextField(
+          controller: controller,
+          decoration: const InputDecoration(
+            hintText: 'Enter destination',
+            prefixIcon: Icon(Icons.location_on_outlined, color: Color(0xFFD4AF37)),
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel', style: TextStyle(color: Colors.grey)),
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              final newLocation = controller.text.trim();
+              if (newLocation.isNotEmpty) {
+                Navigator.pop(context);
+                // Search hotels for the new location
+                await _searchHotelsByLocation(newLocation);
+              }
+            },
+            style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFFD4AF37)),
+            child: const Text('Search', style: TextStyle(color: Colors.white)),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // Search hotels by location
+  Future<void> _searchHotelsByLocation(String location) async {
+    setState(() {
+      _isLoading = true;
+      _location = location;
+    });
+
+    // Simulate network delay
+    await Future.delayed(const Duration(milliseconds: 800));
+
+    // Get hotels for the location
+    final hotelData = MockDataService.getHotelsByLocation(location);
+    
+    setState(() {
+      _places = hotelData['places'] as List<Place>;
+      _placeDetails = hotelData['details'] as Map<String, PlaceDetails>;
+      _isLoading = false;
+    });
+  }
+
+  // Dialog for date selection
+  void _showDatePicker() async {
+    final DateTimeRange? picked = await showDateRangePicker(
+      context: context,
+      firstDate: DateTime.now(),
+      lastDate: DateTime.now().add(const Duration(days: 365)),
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: const ColorScheme.light(
+              primary: Color(0xFFD4AF37),
+              onPrimary: Colors.white,
+              onSurface: Color(0xFF0A1A3A),
+            ),
+          ),
+          child: child!,
+        );
+      },
+    );
+    
+    if (picked != null) {
+      setState(() {
+        _checkInDate = '${_getMonthAbbr(picked.start.month)} ${picked.start.day}';
+        _checkOutDate = '${picked.end.day}';
+      });
+    }
+  }
+
+  String _getMonthAbbr(int month) {
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    return months[month - 1];
+  }
+
+  // Dialog for guests selection
+  void _showGuestsDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('Number of Guests', style: GoogleFonts.playfairDisplay(fontWeight: FontWeight.bold)),
+        content: StatefulBuilder(
+          builder: (context, setDialogState) {
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Adults', style: GoogleFonts.dmSans(fontSize: 16)),
+                    Row(
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            if (_adults > 1) {
+                              setDialogState(() => _adults--);
+                            }
+                          },
+                          icon: const Icon(Icons.remove_circle_outline, color: Color(0xFFD4AF37)),
+                        ),
+                        Text('$_adults', style: GoogleFonts.dmSans(fontSize: 18, fontWeight: FontWeight.bold)),
+                        IconButton(
+                          onPressed: () {
+                            if (_adults < 10) {
+                              setDialogState(() => _adults++);
+                            }
+                          },
+                          icon: const Icon(Icons.add_circle_outline, color: Color(0xFFD4AF37)),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            );
+          },
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel', style: TextStyle(color: Colors.grey)),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              setState(() {}); // Update main UI
+              Navigator.pop(context);
+            },
+            style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFFD4AF37)),
+            child: const Text('Done', style: TextStyle(color: Colors.white)),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _buildSearchRow(IconData icon, String label, String value) {
     return Row(
       children: [
@@ -361,10 +528,21 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildHotelCard(String title, String location, String price, String imageUrl) {
     return GestureDetector(
       onTap: () {
+        // Extract rating from price string (format: "Rating: 4.5" or "New")
+        String rating = "4.5"; // default
+        if (price.contains("Rating:")) {
+          rating = price.replaceAll("Rating:", "").trim();
+        }
+        
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const HotelDetailsScreen(),
+            builder: (context) => HotelDetailsScreen(
+              hotelName: title,
+              hotelAddress: location,
+              hotelImage: imageUrl,
+              hotelRating: rating,
+            ),
           ),
         );
       },
